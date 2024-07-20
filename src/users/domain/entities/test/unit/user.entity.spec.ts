@@ -25,8 +25,27 @@ describe('UserEntity init test', () => {
 
   });
 
-  it('should initialize the user entity with custom values', () => {
-    // ... teste para inicialização com valores personalizados ...
+  it('Getter od name fiel', () => {
+    expect(sut.props.name).toBeDefined()
+    expect(sut.props.name).toEqual(sut.props.name)
+    expect(typeof sut.props.name).toBe('string')
   });
+
+  it('Getter od email fiel', () => {
+    expect(sut.props.email).toBeDefined()
+    expect(sut.props.email).toEqual(sut.props.email)
+    expect(typeof sut.props.email).toBe('string')
+  });
+
+  it('Getter od password fiel', () => {
+    expect(sut.props.password).toBeDefined()
+    expect(sut.props.password).toEqual(sut.props.password)
+    expect(typeof sut.props.password).toBe('string')
+  })
+
+  it('Getter od createdAt fiel', () => {
+    expect(sut.props.createdAt).toBeDefined()
+    expect(sut.props.createdAt).toBeInstanceOf(Date)
+  })
 
 });
