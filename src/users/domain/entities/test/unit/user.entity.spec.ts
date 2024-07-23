@@ -9,7 +9,7 @@ describe('UserEntity init test', () => {
 
   beforeEach(()=>{
     props = {
-      name: faker.person.fullName(),
+      name: "Joao wsl solza",
       email: faker.internet.email(),
       password: faker.internet.password()
     }
