@@ -31,6 +31,15 @@ describe('UserEntity init test', () => {
     expect(typeof sut.props.name).toBe('string')
   });
 
+  it('Setter od name fiel', () => {
+    sut['name'] = 'other name'
+    expect(sut.props.name).toEqual('other name')
+    expect(typeof sut.props.name).toBe('string')
+  });
+
+
+
+
   it('Getter od email fiel', () => {
     expect(sut.props.email).toBeDefined()
     expect(sut.props.email).toEqual(sut.props.email)
@@ -43,9 +52,27 @@ describe('UserEntity init test', () => {
     expect(typeof sut.props.password).toBe('string')
   })
 
+  it('Setter od password fiel', () => {
+    sut['password'] = 'other password'
+    expect(sut.props.password).toEqual('other password')
+    expect(typeof sut.props.password).toBe('string')
+  })
+
   it('Getter od createdAt fiel', () => {
     expect(sut.props.createdAt).toBeDefined()
     expect(sut.props.createdAt).toBeInstanceOf(Date)
   })
+
+  it('shoud update a user ', () => {
+    sut.update('other user')
+    expect(sut.props.name).toEqual('other user')
+
+  })
+
+  it('shoud update a password fild ', () => {
+    sut.update('other password')
+    expect(sut.props.name).toEqual('other password')
+  })
+
 
 });
