@@ -4,6 +4,7 @@ export type FildsErros = {
 
 export interface validateFieldsInterface<ProspsValidated> {
   erros: FildsErros
-  validatedFata: ProspsValidated
+  validatedData: ProspsValidated
   validate(data: any): boolean
 }
+
