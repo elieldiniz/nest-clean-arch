@@ -2,17 +2,20 @@ import { faker } from '@faker-js/faker'
 import {UserProps} from '../../entities/user.entity'
 
 type Props = {
-  name: string;
-  email: string;
-  password: string;
+  name?: string;
+  email?: string;
+  password?: string;
   createdAt?: Date;
 }
 
+
 export function UserDataBuilder(props : Props): UserProps {
-  return{
-    name: props.name ?? "Joao wsl solza",
+  return {
+    name: props.name ?? 'joa diniz helliort',
     email: props.email ?? faker.internet.email(),
     password: props.password ?? faker.internet.password(),
     createdAt: props.createdAt ?? new Date()
   }
 }
+
+

@@ -22,19 +22,16 @@ export class UserRules{
 
   @IsDate()
   @IsOptional()
-  createAt: Date
+  createdAt: Date
 
-  constructor(emal, name, password, createAt){
-
-    Object.assign(this, {emal, name, password, createAt} )
-
-
+  constructor({email, name, password, createdAt}: UserProps){
+    Object.assign(this,{email, name, password, createdAt })
   }
 }
 
 export class UserValidator extends ClassValidatorFilds<UserRules>{
   validate(data: UserProps): boolean {
-      return super.validate(new UserRules(data.email, data.name, data.password, data.createdAt ?? new Date()))
+      return super.validate(new UserRules(data ?? ({} as UserProps)))
   }
 }
 

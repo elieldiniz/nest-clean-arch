@@ -1,6 +1,7 @@
 
 import { faker } from '@faker-js/faker'
 import {UserEntity, UserProps} from '../../user.entity'
+import { UserDataBuilder } from '@/users/domain/testing/helpers/user-data-builder';
 describe('UserEntity init test', () => {
 
   let props: UserProps
@@ -8,16 +9,12 @@ describe('UserEntity init test', () => {
   let sut: UserEntity
 
   beforeEach(()=>{
-    props = {
-      name: "Joao wsl solza",
-      email: faker.internet.email(),
-      password: faker.internet.password()
-    }
+    props = UserDataBuilder({})
 
+    sut = new UserEntity(props)
   })
 
   it('Constructor method', () => {
-   sut = new UserEntity(props)
     expect(sut.props.name).toEqual(props.name)
     expect(sut.props.email).toEqual(props.email)
     expect(sut.props.password).toEqual(props.password)
