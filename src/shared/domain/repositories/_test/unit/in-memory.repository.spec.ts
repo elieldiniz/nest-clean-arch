@@ -45,4 +45,30 @@ describe('InMemoryRepositry unit tests', ()=>{
     expect([entity]).toStrictEqual(result)
   })
 
+  it("should throw error on update when entity not foud", async () => {
+    const entity = new StubeEntity({name:'test name', price: 50 })
+
+    await expect(sut.update(entity)).rejects.toThrow(new NotFoudError('Entity not found'))
+
+  })
+
+  it("shold update a entity by id",async ()=>{
+    const entity = new StubeEntity({name:'test name', price: 50 })
+    await sut.insert(entity)
+    const entityUpdated = new StubeEntity({name:'updated', price: 10 }, entity._id)
+    await sut.update(entityUpdated)
+    expect(entityUpdated.toJSON()).toStrictEqual(sut.items[0].toJSON())
+  })
+
+  it("should throw error when entity not", async () => {
+    await expect(sut.delete('fakerId')).rejects.toThrow(new NotFoudError('Entity not found'));
+  })
+
+  it("shold delete an entity ",async ()=>{
+    const entity = new StubeEntity({name:'test name', price: 50 })
+    await sut.insert(entity)
+    await sut.delete(entity._id)
+    expect(sut.items).toHaveLength(0)
+  })
+
 })
