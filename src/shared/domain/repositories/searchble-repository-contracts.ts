@@ -44,11 +44,7 @@ export class SearchParams {
 
   private  set perPage(value: number){
     let _perPage = value === (true as any) ? this._perPage : +value
-    if (
-      Number.isNaN(_perPage) ||
-      _perPage <= 0 ||
-      parseInt(_perPage as any) !== _perPage
-    ) {
+    if(Number.isNaN(_perPage) || _perPage <= 0 || parseInt(_perPage as any) === _perPage){
       _perPage = this._perPage
     }
    this._perPage = _perPage
@@ -58,11 +54,13 @@ export class SearchParams {
     return this._sort
   }
 
-  private set sort(value: string | null){
-      this._sort =
-      value === null || value === undefined || value === '' ? null : `${value}`
+  set sort(value: string | null) {
+    if (value === null || value === undefined || value === '') {
+      this._sort = null;
+    } else {
+      this._sort = `${value}`
+    }
   }
-
   get sortDir(){
     return this._sortDir
   }

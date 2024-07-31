@@ -51,5 +51,30 @@ describe('Searchable Repository unit tests', () => {
         )
       })
     })
+
+    it('sort prop', () => {
+      const sut = new SearchParams()
+      expect(sut.sort).toBeNull()
+
+      const params = [
+        { sort: null as any, expected: null },
+        { sort: undefined as any, expected: null },
+        { sort: '' as any, expected: null },
+        { sort: 'test', expected: 'test' },
+        { sort: 0, expected: '0' },
+        { sort: -1, expected: '-1' },
+        { sort: 5.5, expected: '5.5' },
+        { sort: true, expected: 'true' },
+        { sort: false, expected: 'false' },
+        { sort: {}, expected: '[object Object]' },
+        { sort: 1, expected: '1' },
+        { sort: 2, expected: '2' },
+        { sort: 25, expected: '25' },
+      ]
+
+      params.forEach(i => {
+        expect(new SearchParams({ sort: i.sort }).sort).toEqual(i.expected)
+      })
+    })
   })
 })
