@@ -7,7 +7,7 @@ export type SerchProps<Filter = string> = {
   page?: number
   perPage?: number
   sort?: string | null
-  sortDir: SortDirection | null
+  sortDir?: SortDirection | null
   filter?: Filter | null
 }
 
@@ -18,21 +18,21 @@ export class SearchParams {
   protected _sortDir: SortDirection | null
   protected _filter: string | null
 
-  constructor(props: SerchProps){
-    this._page = props.page
-    this._perPage = props.perPage
-    this._sort = props.sort
-    this._sortDir = props.sortDir
-    this._filter = props.filter
+  constructor(props: SerchProps = {}){
+    this.page = props.page
+    this.perPage = props.perPage
+    this.sort = props.sort
+    this.sortDir = props.sortDir
+    this.filter = props.filter
   }
 
   get page(){
-    return this.page
+    return this._page
   }
 
   private set page(value: number){
     let _page = +value
-    if(Number.isNaN(_page) || _page <= 0 || parseInt(_page as any) === _page){
+    if(Number.isNaN(_page) || _page <= 0 || parseInt(_page as any) !== _page){
       _page = 1
     }
     this._page = _page
@@ -43,9 +43,13 @@ export class SearchParams {
   }
 
   private  set perPage(value: number){
-    let _perPage = +value
-    if(Number.isNaN(_perPage) || _perPage <= 0 || parseInt(_perPage as any) === _perPage){
-      _perPage = 1
+    let _perPage = value === (true as any) ? this._perPage : +value
+    if (
+      Number.isNaN(_perPage) ||
+      _perPage <= 0 ||
+      parseInt(_perPage as any) !== _perPage
+    ) {
+      _perPage = this._perPage
     }
    this._perPage = _perPage
   }
@@ -55,7 +59,8 @@ export class SearchParams {
   }
 
   private set sort(value: string | null){
-      this.sort = value === null || value === undefined || value === '' ? null : `${value}`
+      this._sort =
+      value === null || value === undefined || value === '' ? null : `${value}`
   }
 
   get sortDir(){
@@ -77,7 +82,8 @@ export class SearchParams {
   }
 
   private set filter(value: string){
-    this.filter = value === null || value === undefined || value === '' ? null : `${value}`
+    this._sort =
+      value === null || value === undefined || value === '' ? null : `${value}`
   }
 
 
