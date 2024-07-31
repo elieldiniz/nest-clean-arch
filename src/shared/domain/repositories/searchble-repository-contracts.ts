@@ -31,11 +31,23 @@ export class SearchParams {
   }
 
   private set page(value: number){
-    return
+    let _page = +value
+    if(Number.isNaN(_page) || _page <= 0 || parseInt(_page as any) === _page){
+      _page = 1
+    }
+    this._page = _page
   }
 
   get perPage(){
-    return
+    return this._perPage
+  }
+
+  private  set perPage(value: number){
+    let _perPage = +value
+    if(Number.isNaN(_perPage) || _perPage <= 0 || parseInt(_perPage as any) === _perPage){
+      _perPage = 1
+    }
+   this._perPage = _perPage
   }
 
   get sort() {
@@ -43,20 +55,31 @@ export class SearchParams {
   }
 
   private set sort(value: string | null){
-
+      this.sort = value === null || value === undefined || value === '' ? null : `${value}`
   }
 
   get sortDir(){
     return this._sortDir
   }
 
-  private set sortDir(value: string | null){
+  private set sortDir(value: string | null) {
+    if (!this.sort) {
+        this._sortDir = null;
+        return;
+    }
+    const dir = `${value}`.toLowerCase();
+    this._sortDir = (dir === 'asc' || dir === 'desc') ? dir : 'desc';
+}
 
-  }
 
   get filter(){
     return this._filter
   }
+
+  private set filter(value: string){
+    this.filter = value === null || value === undefined || value === '' ? null : `${value}`
+  }
+
 
 }
 
