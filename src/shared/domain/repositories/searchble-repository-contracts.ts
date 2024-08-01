@@ -53,7 +53,7 @@ export class SearchParams {
   }
 
   private set perPage(value: number | boolean) {
-    console.log('Valor recebido:', value);
+
 
     // Se o valor for booleano true, define como 15
     if (value === true) {
@@ -74,7 +74,6 @@ export class SearchParams {
     }
 
     this._perPage = _perPage
-    console.log('Valor adicinado:', _perPage);
   }
 
 
@@ -137,26 +136,27 @@ export class SerchResult<E extends Entity, Filter =  string>{
     this.filter = props.filter ?? null
   }
 
-  toJSON(){
-    return{
-      items: this.items.map(item => item.toJSON()),
+  toJSON(forceEntity = false) {
+    return {
+      items: forceEntity ? this.items.map(item => item.toJSON()) : this.items,
       total: this.total,
       currentPage: this.currentPage,
-      perPage : this.perPage,
-      lastPage : this.lastPage,
-      sort : this.sort,
-      sortDir : this.sortDir,
-      filter: this.filter
+      perPage: this.perPage,
+      lastPage: this.lastPage,
+      sort: this.sort,
+      sortDir: this.sortDir,
+      filter: this.filter,
     }
   }
 }
 
 export interface SerchablsRepositoryInterface<
 E extends Entity,
-SerchInput,
-SerchOutput
+Filter = string,
+SerchInput = SearchParams,
+SerchOutput = SerchResult<E ,Filter>
 > extends RepositoryInterface <E>{
-  seaech(props: SearchParams): Promise<SerchOutput>
+  seaech(props: SerchInput): Promise<SerchOutput>
 
 }
 
