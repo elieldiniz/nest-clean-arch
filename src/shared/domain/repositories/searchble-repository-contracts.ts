@@ -11,6 +11,16 @@ export type SerchProps<Filter = string> = {
   filter?: Filter | null
 }
 
+export type SerchResultProps<E extends Entity, Filter> = {
+  items:  E[]
+  total: number
+  currentPage: number
+  perPage: number
+  sort: string | null
+  sortDir: string | null
+  filter: Filter| null
+}
+
 export class SearchParams {
   protected _page: number
   protected _perPage = 15
@@ -104,6 +114,41 @@ export class SearchParams {
   }
 
 
+}
+
+export class SerchResult<E extends Entity, Filter =  string>{
+  readonly items:  E[]
+  readonly total: number
+  readonly currentPage: number
+  readonly perPage: number
+  readonly lastPage:number
+  readonly sort: string | null
+  readonly sortDir: string | null
+  readonly filter: Filter| null
+
+  constructor(props: SerchResultProps<E,Filter>){
+    this.items = props.items
+    this.total = props.total
+    this.currentPage = props.currentPage
+    this.perPage = props.perPage
+    this.lastPage = Math.ceil(this.total / this.perPage)
+    this.sort = props.sort ?? null
+    this.sortDir = props.sortDir ?? null
+    this.filter = props.filter ?? null
+  }
+
+  toJSON(){
+    return{
+      items: this.items.map(item => item.toJSON()),
+      total: this.total,
+      currentPage: this.currentPage,
+      perPage : this.perPage,
+      lastPage : this.lastPage,
+      sort : this.sort,
+      sortDir : this.sortDir,
+      filter: this.filter
+    }
+  }
 }
 
 export interface SerchablsRepositoryInterface<
