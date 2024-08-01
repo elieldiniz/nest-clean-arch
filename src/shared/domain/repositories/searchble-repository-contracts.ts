@@ -52,28 +52,16 @@ export class SearchParams {
     return this._perPage
   }
 
-  private set perPage(value: number | boolean) {
-
-
-    // Se o valor for booleano true, define como 15
-    if (value === true) {
-      this._perPage = 15;
-      return;
-    }
-
-    // Assegura que value seja do tipo number após conversão
-    let _perPage = +value;
-
-    // Verifica se o valor é NaN, menor ou igual a zero, ou não é um número inteiro
+  private set perPage(value: number) {
+    let _perPage = +value
     if (
       Number.isNaN(_perPage) ||
       _perPage <= 0 ||
-      parseInt(_perPage.toString()) !== _perPage
+      parseInt(_perPage as any) !== _perPage
     ) {
-      _perPage = 15
+      _perPage = this._perPage
     }
-
-    this._perPage = _perPage
+    this._page = _perPage
   }
 
 

@@ -10,8 +10,28 @@ export abstract class InMemorySearchebleRepository<E extends Entity>
   implements SerchablsRepositoryInterface<E, any, any>{
 
 
-    seaech(props: SearchParams): Promise<SerchResult<E>> {
-      throw new Error('erro')
+    async search(props: SearchParams): Promise<SerchResult<E>> {
+      const itemsFiltered = await this.applyFilter(this.items, props.filter)
+    const itemsSorted = await this.applySort(
+      itemsFiltered,
+      props.sort,
+      props.sortDir,
+    )
+    const itemsPaginated = await this.applyPaginate(
+      itemsSorted,
+      props.page,
+      props.perPage,
+    )
+    return new SerchResult({
+      items: itemsPaginated,
+      total: itemsFiltered.length,
+      currentPage: props.page,
+      perPage: props.perPage,
+      sort: props.sort,
+      sortDir: props.sortDir,
+      filter: props.filter,
+    })
+
     }
 
     protected abstract applyFilter(
