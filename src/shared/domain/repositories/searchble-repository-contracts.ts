@@ -42,25 +42,44 @@ export class SearchParams {
     return this._perPage
   }
 
-  private  set perPage(value: number){
-    let _perPage = value === (true as any) ? this._perPage : +value
-    if(Number.isNaN(_perPage) || _perPage <= 0 || parseInt(_perPage as any) === _perPage){
-      _perPage = this._perPage
+  private set perPage(value: number | boolean) {
+    console.log('Valor recebido:', value);
+
+    // Se o valor for booleano true, define como 15
+    if (value === true) {
+      this._perPage = 15;
+      return;
     }
-   this._perPage = _perPage
+
+    // Assegura que value seja do tipo number após conversão
+    let _perPage = +value;
+
+    // Verifica se o valor é NaN, menor ou igual a zero, ou não é um número inteiro
+    if (
+      Number.isNaN(_perPage) ||
+      _perPage <= 0 ||
+      parseInt(_perPage.toString()) !== _perPage
+    ) {
+      _perPage = 15
+    }
+
+    this._perPage = _perPage
+    console.log('Valor adicinado:', _perPage);
   }
+
+
+
+
 
   get sort() {
     return this._sort
   }
 
-  set sort(value: string | null) {
-    if (value === null || value === undefined || value === '') {
-      this._sort = null;
-    } else {
-      this._sort = `${value}`
-    }
+  private set sort(value: string | null) {
+    this._sort =
+      value === null || value === undefined || value === '' ? null : `${value}`
   }
+
   get sortDir(){
     return this._sortDir
   }
@@ -80,7 +99,7 @@ export class SearchParams {
   }
 
   private set filter(value: string){
-    this._sort =
+    this._filter =
       value === null || value === undefined || value === '' ? null : `${value}`
   }
 
@@ -95,4 +114,6 @@ SerchOutput
   seaech(props: SearchParams): Promise<SerchOutput>
 
 }
+
+
 

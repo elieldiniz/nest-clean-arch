@@ -47,11 +47,10 @@ describe('Searchable Repository unit tests', () => {
       ]
       params.forEach(i => {
         expect(new SearchParams({ perPage: i.perPage }).perPage).toBe(
-          i.expected,
+          i.expected
         )
       })
     })
-
     it('sort prop', () => {
       const sut = new SearchParams()
       expect(sut.sort).toBeNull()
@@ -73,8 +72,9 @@ describe('Searchable Repository unit tests', () => {
       ]
 
       params.forEach(i => {
-        expect(new SearchParams({ sort: i.sort }).sort).toEqual(i.expected)
+        expect(new SearchParams({ sort: i.sort }).sort).toBe(i.expected)
       })
     })
+
   })
 })
