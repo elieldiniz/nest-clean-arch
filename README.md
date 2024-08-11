@@ -1,31 +1,11 @@
 
-## Description
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-## Installation
-```bash
-$ npm install
-```
-## Running the app
-```bash
-# development
-$ npm run start
+#  API Restful Nodejs, NestJS e Typescript, com testes automatizados, DDD, Clean Arch e Design Pattens
 
-# watch mode
-$ npm run start:dev
+Visão Geral
 
-# production mode
-$ npm run start:prod
-```
+Criação de projeto prático direto ao ponto, exemplificando uma API Restful com Node.js, NestJS e Typescript, orientado à testes automatizados (unitários, de integração e ponta a ponta), aplicando conceitos de Domain Driven Design (DDD), Clean Architecture, Design Patterns e princípios SOLID.
 
-## Test
+## Licença
+Licença Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
+[MIT](https://choosealicense.com/licenses/mit/)
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
