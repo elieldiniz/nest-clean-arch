@@ -46,6 +46,7 @@ describe('Searchable Repository unit tests', () => {
         { perPage: 25, expected: 25 },
       ]
       params.forEach(i => {
+
         expect(new SearchParams({ perPage: i.perPage }).perPage).toBe(
           i.expected
         )
@@ -134,7 +135,6 @@ describe('Searchable Repository unit tests', () => {
     })
 
   })
-
   describe('SerchResult tests',() =>{
     it('constructor props', () => {
       let sut = new SerchResult({

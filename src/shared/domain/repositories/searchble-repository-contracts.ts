@@ -42,7 +42,8 @@ export class SearchParams {
 
   private set page(value: number){
     let _page = +value
-    if(Number.isNaN(_page) || _page <= 0 || parseInt(_page as any) !== _page){
+    if(Number.isNaN(_page) ||
+    _page <= 0 || parseInt(_page as any) !== _page){
       _page = 1
     }
     this._page = _page
@@ -53,15 +54,16 @@ export class SearchParams {
   }
 
   private set perPage(value: number) {
-    let _perPage = +value
+    let _perPage = +value;
     if (
+      typeof value === 'boolean' && value === true ||
       Number.isNaN(_perPage) ||
       _perPage <= 0 ||
       parseInt(_perPage as any) !== _perPage
-    ) {
-      _perPage = this._perPage
+    ){
+      _perPage = 15
     }
-    this._page = _perPage
+    this._perPage = _perPage;
   }
 
 
