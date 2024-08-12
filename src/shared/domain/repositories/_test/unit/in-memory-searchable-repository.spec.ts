@@ -1,6 +1,7 @@
 import { Entity } from "@/shared/domain/entities/entity"
 import { InMemoryRepository } from "../../in-memory.repository"
 import { InMemorySearchebleRepository } from "../../in-memory-searcheble.repository"
+import { SearchParams, SerchResult } from "../../searchble-repository-contracts"
 
 type StubeEntityProps = {
   name: string
@@ -119,7 +120,72 @@ describe('InMemoryRepositry unit tests', ()=>{
     })
   })
 
-  describe('apllySearch method', ()=>{
+  describe('search method', () => {
+    it('should apply only pagination when the other params are null', async () => {
+      const entity = new StubeEntity({ name: 'test', price: 50 })
+      const items = Array(16).fill(entity)
+      sut.items = items
 
+      const params = await sut.search(new SearchParams())
+      expect(params).toStrictEqual(
+        new SerchResult({
+          items: Array(15).fill(entity),
+          total: 16,
+          currentPage: 1,
+          perPage: 15,
+          sort: null,
+          sortDir: null,
+          filter: null,
+        }),
+      )
+    })
+
+    it('should apply paginate and filter', async () => {
+      const items = [
+        new StubeEntity({ name: 'test', price: 50 }),
+        new StubeEntity({ name: 'a', price: 50 }),
+        new StubeEntity({ name: 'TEST', price: 50 }),
+        new StubeEntity({ name: 'TeSt', price: 50 }),
+      ]
+      sut.items = items
+
+      let params = await sut.search(
+        new SearchParams({
+          page: 1,
+          perPage: 2,
+          filter: 'TEST',
+        }),
+      )
+      expect(params).toStrictEqual(
+        new SerchResult({
+          items: [items[0], items[2]],
+          total: 3,
+          currentPage: 1,
+          perPage: 2,
+          sort: null,
+          sortDir: null,
+          filter: 'TEST',
+        }),
+      )
+
+      params = await sut.search(
+        new SearchParams({
+          page: 2,
+          perPage: 2,
+          filter: 'TEST',
+        }),
+      )
+      expect(params).toStrictEqual(
+        new SerchResult({
+          items: [items[3]],
+          total: 3,
+          currentPage: 2,
+          perPage: 2,
+          sort: null,
+          sortDir: null,
+          filter: 'TEST',
+        }),
+      )
+    })
   })
 })
