@@ -27,3 +27,4 @@ Trabalhando sem um backend completo
 npm install @faker-js/faker --save-dev
 
 ---
+api em nestjs
