@@ -27,4 +27,12 @@ Trabalhando sem um backend completo
 npm install @faker-js/faker --save-dev
 
 ---
-api em nestjs
+npm install bcrypt
+npm install -D @types/bcryptjs
+
+Bcrypt é um algoritmo de hash unidirecional popularmente utilizado para armazenar senhas de forma segura em sistemas computacionais. Ao invés de armazenar a senha em texto plano, que poderia ser facilmente comprometida em caso de vazamento de dados, o bcrypt gera uma representação criptografada (hash) da senha.
+
+---
+
+
+
