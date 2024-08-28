@@ -2,6 +2,7 @@ import { BadRequestError } from "../erros/bad-requet-erros"
 import { UserRepository } from "../../domain/repositorys/user.repository"
 import { UserEntity } from "@/users/domain/entities/user.entity"
 import {HashProviders} from "@/shared/application/providers/hash-provider"
+import { UserOutput } from "../dtos/user-output"
 
 export namespace SignupUserCase{
   export type Input = {
@@ -9,13 +10,7 @@ export namespace SignupUserCase{
     email: string
     password: string
   }
-  export type Output = {
-    id: string
-    name: string
-    email: string
-    password: string
-    createdAt: Date
-  }
+  export type Output = UserOutput
 
   export class UserCase {
     //Injeção de userRepository
