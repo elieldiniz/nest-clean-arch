@@ -4,7 +4,7 @@ import { HashProviders } from "@/shared/application/providers/hash-provider"
 import { BcriptjsHashProvider } from "@/users/infrastructure/providers/hash-provider/bcryptjs-hash.providers"
 import { UserDataBuilder } from "@/users/domain/testing/helpers/user-data-builder"
 import { ConflictErro } from "@/shared/domain/erros/conflict-erros copy"
-import { BadRequestError } from "@/users/applicatio/erros/bad-requet-erros"
+import { BadRequestError } from "@/shared/application/erros/bad-requet-erros"
 describe('UserInMemoryRepository unit tests', () => {
   let sut: SignupUserCase.UserCase
   let repository: UserInMemoryRepository

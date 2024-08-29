@@ -1,4 +1,4 @@
-import { BadRequestError } from "../erros/bad-requet-erros"
+import { BadRequestError } from "../../../shared/application/erros/bad-requet-erros"
 import { UserRepository } from "../../domain/repositorys/user.repository"
 import { UserEntity } from "@/users/domain/entities/user.entity"
 import {HashProviders} from "@/shared/application/providers/hash-provider"
