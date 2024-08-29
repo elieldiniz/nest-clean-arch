@@ -3,6 +3,8 @@ import { UserRepository } from "../../domain/repositorys/user.repository"
 import { UserEntity } from "@/users/domain/entities/user.entity"
 import {HashProviders} from "@/shared/application/providers/hash-provider"
 import { UserOutput } from "../dtos/user-output"
+import { UserCase as DefoultUseCase} from "@/shared/application/providers/usecase/use-case"
+
 
 export namespace SignupUserCase{
   export type Input = {
@@ -12,7 +14,7 @@ export namespace SignupUserCase{
   }
   export type Output = UserOutput
 
-  export class UserCase {
+  export class UserCase implements DefoultUseCase<Input, Output>{
     //Injeção de userRepository
 
     constructor(private userRepository: UserRepository.Repository,

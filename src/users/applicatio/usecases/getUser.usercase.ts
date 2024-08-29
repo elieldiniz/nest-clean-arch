@@ -1,6 +1,7 @@
 
 import { UserRepository } from "../../domain/repositorys/user.repository"
 import { UserOutput } from "../dtos/user-output"
+import { UserCase as DefoultUseCase} from "@/shared/application/providers/usecase/use-case"
 
 export namespace GetUserCase{
   export type Input = {
@@ -9,7 +10,7 @@ export namespace GetUserCase{
 
   export type  Output = UserOutput
 
-  export class UserCase {
+  export class UserCase implements DefoultUseCase<Input, Output> {
     //Injeção de userRepository
 
     constructor(private userRepository: UserRepository.Repository,
