@@ -12,16 +12,16 @@ describe('PaginationOutputMapper unit tests', () => {
       sortDir: '',
       filter: 'fake',
     })
+
     const sut = PaginationOutputMapper.toOutput(result.items, result)
 
-
-    expect(sut).toStrictEqual({
+    const resuts = {
       items: ['fake'],
       total: 1,
       currentPage: 1,
       lastPage: 1,
       perPage: 1,
-    })
-    console.log(sut)
+    }
+    expect(sut).toStrictEqual(resuts)
   })
 })

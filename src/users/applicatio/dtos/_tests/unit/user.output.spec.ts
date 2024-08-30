@@ -7,8 +7,8 @@ describe('UserOutputMapper unit tests', () => {
     const entity = new UserEntity(UserDataBuilder({}))
     const spyToJson = jest.spyOn(entity, 'toJSON')
     const sut = UserOutputMapper.toOutput(entity)
-
     expect(spyToJson).toHaveBeenCalled()
-    expect(sut).toEqual(entity.toJSON)
+    expect(sut).toEqual(entity.toJSON())
+
   })
 })
