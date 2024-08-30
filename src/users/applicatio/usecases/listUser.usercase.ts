@@ -18,7 +18,7 @@ export namespace ListUserseCase{
 
     async execute(input: Input): Promise<Output> {
       const params = new UserRepository.SearchParams(input)
-      const searchResult  = await this.userRepository.seaech(params)
+      const searchResult  = await this.userRepository.search(params)
       return this.toOutput(searchResult)
     }
 

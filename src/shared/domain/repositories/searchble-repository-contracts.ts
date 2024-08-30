@@ -147,7 +147,7 @@ SerchInput = SearchParams<Filter>,
 SerchOutput = SerchResult<E ,Filter>
 > extends RepositoryInterface <E>{
   sortableFields: string[]
-  seaech(props: SerchInput): Promise<SerchOutput>
+  search(props: SerchInput): Promise<SerchOutput>
 
 }
 
