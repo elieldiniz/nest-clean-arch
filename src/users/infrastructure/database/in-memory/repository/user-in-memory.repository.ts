@@ -12,6 +12,7 @@ export class UserInMemoryRepository
 {
   sortableFields: string[] = ['name', 'createdAt']
   items: any
+  static SerchResult: any
 
   async findByEmail(email: string): Promise<UserEntity> {
     const entity = this.items.find(item => item.email === email)
