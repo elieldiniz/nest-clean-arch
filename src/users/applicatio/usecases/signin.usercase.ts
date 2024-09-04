@@ -1,6 +1,5 @@
 import { BadRequestError } from "../../../shared/application/erros/bad-requet-erros"
 import { UserRepository } from "../../domain/repositorys/user.repository"
-import { UserEntity } from "@/users/domain/entities/user.entity"
 import {HashProviders} from "@/shared/application/providers/hash-provider"
 import { UserOutput, UserOutputMapper } from "../dtos/user-output"
 import { UserCase as DefoultUseCase} from "@/shared/application/providers/usecase/use-case"
