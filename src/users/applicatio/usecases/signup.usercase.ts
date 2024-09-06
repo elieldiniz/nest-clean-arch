@@ -4,6 +4,7 @@ import { UserEntity } from "@/users/domain/entities/user.entity"
 import {HashProviders} from "@/shared/application/providers/hash-provider"
 import { UserOutput } from "../dtos/user-output"
 import { UserCase as DefoultUseCase} from "@/shared/application/providers/usecase/use-case"
+import { SignupDto } from "@/users/infrastructure/dto/signup.dto"
 
 
 export namespace SignupUserCase{
@@ -15,6 +16,9 @@ export namespace SignupUserCase{
   export type Output = UserOutput
 
   export class UserCase implements DefoultUseCase<Input, Output>{
+    create(SignupDto: SignupDto) {
+      throw new Error('Method not implemented.')
+    }
     //Injeção de userRepository
 
     constructor(private userRepository: UserRepository.Repository,
