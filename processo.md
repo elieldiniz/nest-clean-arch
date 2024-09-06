@@ -34,5 +34,7 @@ Bcrypt é um algoritmo de hash unidirecional popularmente utilizado para armazen
 
 ---
 
+jest
+
 
 
