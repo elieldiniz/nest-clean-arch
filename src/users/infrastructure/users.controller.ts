@@ -74,6 +74,6 @@ export class UsersController {
   async remove(@Param('id') id: string) {
     await this.deleteUserUseCase.execute({ id })
   }
-  
+
 }
 
