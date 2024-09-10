@@ -101,20 +101,28 @@ describe('UsersController unit test', () => {
   it('should delete user  ', async () => {
     const output = undefined
 
-
     const mockupdatePasswordUseCase = {
       execute: jest.fn().mockReturnValue(Promise.resolve(output)),
     }
-
     sut['deleteUserUseCase'] = mockupdatePasswordUseCase as any
 
-
     const result = await sut.remove(id)
-
     expect(output).toStrictEqual(result)
-
-
-
     expect(mockupdatePasswordUseCase.execute).toHaveBeenCalledWith({ id })
+  })
+
+  it('should get user  ', async () => {
+    const output = props
+
+    const mockGetUserCase = {
+      execute: jest.fn().mockReturnValue(Promise.resolve(output)),
+    }
+    sut['getUserUseCase'] = mockGetUserCase as any
+
+    const result = await sut.findOne(id)
+
+    expect(output).toMatchObject(result)
+    expect(output).toStrictEqual(result)
+    expect(mockGetUserCase.execute).toHaveBeenCalledWith({id})
   })
 });
