@@ -5,6 +5,10 @@ import { SignupUserCase } from '@/users/applicatio/usecases/signup.usercase';
 import { SignupDto } from '../../dto/signup.dto';
 import { SigninUserCase } from '@/users/applicatio/usecases/signin.usercase';
 import { SigninDto } from '../../dto/signin.dto';
+import { UpdateUserUserCase } from '@/users/applicatio/usecases/updateuser.usercase';
+import { UpadeteUserDtp } from '../../dto/upadate-user.dto';
+import { UpdatePasswordDto } from '../../dto/upadate-password.dto';
+import { UpadatePasswoerdUserCase } from '@/users/applicatio/usecases/upadate-password.usercase';
 
 
 
@@ -58,5 +62,59 @@ describe('UsersController unit test', () => {
     const result = await sut.login(input)
     expect(output).toMatchObject(result)
     expect(mockSigninUseCase.execute).toHaveBeenCalledWith(input)
+  })
+
+  it('should update a user', async () => {
+    const output: UpdateUserUserCase.Output = props
+    const mockUpdateUserUseCase = {
+      execute: jest.fn().mockReturnValue(Promise.resolve(output)),
+    }
+    sut['updateUserUseCase'] = mockUpdateUserUseCase as any
+    const input: UpadeteUserDtp = {
+      name: 'new name',
+    }
+    const result = await sut.update(id, input)
+    expect(output).toMatchObject(result)
+    expect(mockUpdateUserUseCase.execute).toHaveBeenCalledWith({ id, ...input })
+  })
+
+
+  it('should update user password ', async () => {
+    const output: UpadatePasswoerdUserCase.Output = props
+
+
+    const mockupdatePasswordUseCase = {
+      execute: jest.fn().mockReturnValue(Promise.resolve(output)),
+    }
+
+    sut['updatePasswordUseCase'] = mockupdatePasswordUseCase as any
+
+    const input: UpdatePasswordDto = {
+      password: 'new password',
+      oldPassword: 'old password'
+    }
+    const result = await sut.updatePassword(id, input)
+    expect(output).toMatchObject(result)
+    expect(mockupdatePasswordUseCase.execute).toHaveBeenCalledWith({ id, ...input })
+  })
+
+  it('should delete user  ', async () => {
+    const output = undefined
+
+
+    const mockupdatePasswordUseCase = {
+      execute: jest.fn().mockReturnValue(Promise.resolve(output)),
+    }
+
+    sut['deleteUserUseCase'] = mockupdatePasswordUseCase as any
+
+
+    const result = await sut.remove(id)
+
+    expect(output).toStrictEqual(result)
+
+
+
+    expect(mockupdatePasswordUseCase.execute).toHaveBeenCalledWith({ id })
   })
 });

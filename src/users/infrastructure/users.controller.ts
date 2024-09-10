@@ -15,7 +15,6 @@ import { SigninDto } from './dto/signin.dto';
 
 @Controller('users')
 export class UsersController {
-
   @Inject(SignupUserCase.UserCase)
   private signupUseCase: SignupUserCase.UserCase
 
@@ -60,6 +59,14 @@ export class UsersController {
     return this.getUserUseCase.execute({ id })
   }
 
+
+  @Put(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateUserDto: UpadeteUserDtp,
+  ) {
+    return this.updateUserUseCase.execute({ id,...updateUserDto })
+  }
 
   @Put(':id')
   async updatePassword(
