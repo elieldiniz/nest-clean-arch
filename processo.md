@@ -34,7 +34,10 @@ Bcrypt é um algoritmo de hash unidirecional popularmente utilizado para armazen
 
 ---
 
-jest
+prisma ORM:
+Prisma ORM é um ORM Node.js e TypeScript de última geração que desbloqueia um novo nível de experiência do desenvolvedor ao trabalhar com bancos de dados graças ao seu modelo de dados intuitivo, migrações automatizadas, segurança de tipos e preenchimento automático.
 
+npm install prisma -D -desenvolvimento
+npm install @prisma/client dependecia do projeto
 
 
