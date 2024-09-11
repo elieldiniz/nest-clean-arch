@@ -40,4 +40,8 @@ Prisma ORM é um ORM Node.js e TypeScript de última geração que desbloqueia u
 npm install prisma -D -desenvolvimento
 npm install @prisma/client dependecia do projeto
 
+criar schema user e typagen node module :  npx prisma generate --schema ./src/shared/infrastructure/database/prisma/schema.prisma
+
+---
+
 
