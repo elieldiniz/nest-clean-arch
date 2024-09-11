@@ -42,6 +42,9 @@ npm install @prisma/client dependecia do projeto
 
 criar schema user e typagen node module :  npx prisma generate --schema ./src/shared/infrastructure/database/prisma/schema.prisma
 
+migração: npx dotenv-cli -e .env.development -- npx
+prisma migrate --schema ./src/shared/infrastructure/database/prisma/schema.prisma
+
 ---
 
 
