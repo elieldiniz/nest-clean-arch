@@ -45,6 +45,8 @@ criar schema user e typagen node module :  npx prisma generate --schema ./src/sh
 migração: npx dotenv-cli -e .env.development -- npx
 prisma migrate --schema ./src/shared/infrastructure/database/prisma/schema.prisma
 
+imagen docker : docker run -e POSTGRES_PASSWORD=password123 -e POSTGRES_USER=postgres -p 5432:5432 -d nest-clean-arch-db:latest
+
 ---
 
 
