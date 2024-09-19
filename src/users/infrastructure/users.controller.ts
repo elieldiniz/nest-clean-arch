@@ -68,7 +68,7 @@ export class UsersController {
     return this.updateUserUseCase.execute({ id,...updateUserDto })
   }
 
-  @Put(':id')
+  @Put(':id/password')
   async updatePassword(
     @Param('id') id: string,
     @Body() updatePasswordDto: UpdatePasswordDto,
