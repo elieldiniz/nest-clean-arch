@@ -117,5 +117,5 @@ Este projeto é licenciado sob a [MIT License](LICENSE).
 
 ---
 
-**Autor:** [Seu Nome]
+**Autor:** [Eliel Diniz]
 
