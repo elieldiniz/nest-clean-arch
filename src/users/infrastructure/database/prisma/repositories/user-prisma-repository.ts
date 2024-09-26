@@ -54,7 +54,5 @@ export class UserPrismaRepository implements UserRepository.Repository{
         throw new NotFoudError(`UserModel not found using ID ${id}`)
     }
   }
-
-
 }
 
